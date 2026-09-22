@@ -1,0 +1,123 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply m-0 bg-[#fbfcfa] font-sans text-ink antialiased;
+    line-height: normal;
+  }
+
+  body.menu-open {
+    overflow: hidden;
+  }
+
+  button,
+  a {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  :focus-visible {
+    outline: 3px solid #75bdf1;
+    outline-offset: 4px;
+  }
+}
+
+@layer components {
+  .page-container {
+    width: min(1160px, calc(100% - 40px));
+    margin-inline: auto;
+  }
+
+  .skip-link:focus {
+    top: 1rem;
+  }
+
+  .menu-button[aria-expanded='true'] span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+
+  .menu-button[aria-expanded='true'] span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .menu-button[aria-expanded='true'] span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+
+  .main-nav.open {
+    visibility: visible;
+    opacity: 1;
+    transform: none;
+  }
+
+  .product-card li::before {
+    content: '\2713';
+    position: absolute;
+    left: 0;
+    color: #1d6b50;
+    font-weight: 800;
+  }
+
+  .why-rings::before {
+    content: '';
+    position: absolute;
+    width: 520px;
+    height: 520px;
+    right: -170px;
+    top: -270px;
+    border: 1px solid rgba(201, 239, 108, .18);
+    border-radius: 50%;
+    box-shadow: 0 0 0 75px rgba(201, 239, 108, .025), 0 0 0 150px rgba(201, 239, 108, .018);
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(22px);
+    transition: opacity .7s ease, transform .7s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .float-note {
+    animation: float 4s ease-in-out infinite;
+  }
+
+  .float-note-delayed {
+    animation-delay: -2s;
+  }
+}
+
+@keyframes float {
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@media (max-width: 760px) {
+  .page-container {
+    width: min(620px, calc(100% - 28px));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation: none !important;
+    transition-duration: .01ms !important;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+}
