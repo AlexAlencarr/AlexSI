@@ -8,7 +8,6 @@
   }
 
   body {
-    @apply m-0 bg-[#fbfcfa] font-sans text-ink antialiased;
     line-height: normal;
   }
 
@@ -127,16 +126,16 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
+  html {
     scroll-behavior: auto !important;
-    animation: none !important;
-    transition-duration: .01ms !important;
   }
 
   .reveal {
     opacity: 1;
     transform: none;
+  }
+
+  .float-note {
+    animation: none;
   }
 }
